@@ -1,6 +1,6 @@
 function extractStrategyData() {
   let strategyData = [];
-  
+
   // Locate and extract the strategy properties and inputs
   // The exact selectors will depend on TradingView's page structure
   document.querySelectorAll('.strategy-property-selector').forEach(element => {
@@ -10,11 +10,11 @@ function extractStrategyData() {
     };
     strategyData.push(property);
   });
-  
+
   console.log(strategyData);
-  return strategyData;
+  chrome.runtime.sendMessage({ action: 'strategyData',
+    data: strategyData
+  });
 }
 
- // Execute the function and send data to background or popup
-let data = extractStrategyData();
-export default data;
+extractStrategyData();
